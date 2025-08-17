@@ -13,6 +13,7 @@ import {
 import { usePathname } from "next/navigation";
 import { getPageTitle } from "../utils";
 import { AnimatedThemeToggler } from "@/features/sidebar/components/AnimatedThemeToggler";
+import { SignedIn, UserButton } from "@clerk/nextjs";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -41,8 +42,11 @@ export function SiteHeader() {
           </BreadcrumbList>
         </Breadcrumb>
       </div>
-      <div className="lg:gap-2 lg:px-6">
-        <AnimatedThemeToggler />
+      <div className="flex items-center gap-2 px-4 lg:gap-4 lg:px-6">
+        <AnimatedThemeToggler className="cursor-pointer" />
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
       </div>
     </header>
   );
