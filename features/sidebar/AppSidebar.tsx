@@ -24,7 +24,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               </div>
               <span className="text-2xl font-extrabold">
                 <span className="text-primary">Flow</span>
-                <span className="text-[#333]">Scrape</span>
+                <span className="text-foreground">Scrape</span>
               </span>
             </SidebarMenuButton>
           </SidebarMenuItem>
