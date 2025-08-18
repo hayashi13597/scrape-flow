@@ -3,6 +3,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
+import { QueryClient } from "@tanstack/query-core";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 type Props = {
   children: React.ReactNode;
@@ -14,6 +17,7 @@ export function ClientClerkProvider({ children }: Props) {
       ? document.documentElement.classList.contains("dark")
       : false
   );
+  const [queryClient] = useState(() => new QueryClient());
 
   const observerRef = useRef<MutationObserver | null>(null);
 
@@ -55,7 +59,10 @@ export function ClientClerkProvider({ children }: Props) {
 
   return (
     <ClerkProvider afterSignOutUrl={"/sign-in"} appearance={appearance}>
-      {children}
+      <QueryClientProvider client={queryClient}>
+        {children}
+        <ReactQueryDevtools />
+      </QueryClientProvider>
     </ClerkProvider>
   );
 }
