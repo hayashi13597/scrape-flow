@@ -2,6 +2,12 @@
 import UserWorkflowsSkeleton from "@/features/workflows/components/UserWorkflowsSkeleton";
 import { UserWorkflows } from "@/features/workflows/components/UserWorkflows";
 import CreateWorkflowDialog from "@/features/workflows/components/CreateWorkflowDialog";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Workflows",
+  description: "Manage your workflows"
+};
 
 const Workflows = () => {
   return (

@@ -1,0 +1,27 @@
+import { memo } from "react";
+import { NodeProps } from "@xyflow/react";
+import NodeCard from "@/features/workflow-editor/components/nodes/NodeCard";
+import NodeHeader from "@/features/workflow-editor/components/nodes/NodeHeader";
+import { AppNodeData } from "@/features/workflow-editor/types/appNode";
+import { TaskRegistry } from "@/features/workflow-editor/lib/task/register";
+import { NodeInputs } from "@/features/workflow-editor/components/nodes/NodeInputs";
+import { NodeInput } from "@/features/workflow-editor/components/nodes/NodeInput";
+
+const NodeComponent = memo((props: NodeProps) => {
+  const nodeData = props.data as AppNodeData;
+  const task = TaskRegistry[nodeData.type];
+
+  return (
+    <NodeCard nodeId={props.id} isSelected={!!props.selected}>
+      <NodeHeader taskType={nodeData.type} />
+      <NodeInputs>
+        {task.inputs.map((input, index) => (
+          <NodeInput key={index} input={input} nodeId={props.id} />
+        ))}
+      </NodeInputs>
+    </NodeCard>
+  );
+});
+
+export default NodeComponent;
+NodeComponent.displayName = "NodeComponent";
