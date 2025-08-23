@@ -1,0 +1,32 @@
+import { TaskParamType, TaskType } from "@/features/workflow-editor/types/task";
+import { LucideProps, TextIcon } from "lucide-react";
+import { WorkflowTaskType } from "@/features/workflows/types";
+
+export const ExtractTextFromElementTask = {
+  type: TaskType.EXTRACT_TEXT_FROM_ELEMENT,
+  label: "Extract text from element",
+  icon: (props: LucideProps) => (
+    <TextIcon className="stroke-rose-400" {...props} />
+  ),
+  isEntryPoint: false,
+  inputs: [
+    {
+      name: "Html",
+      type: TaskParamType.STRING,
+      required: true,
+      variant: "textarea"
+    },
+    {
+      name: "Selector",
+      type: TaskParamType.STRING,
+      required: true
+    }
+  ],
+  credits: 2,
+  outputs: [
+    {
+      name: "Extracted text",
+      type: TaskParamType.STRING
+    }
+  ]
+} satisfies WorkflowTaskType;

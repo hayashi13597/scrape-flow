@@ -130,3 +130,7 @@
     animation: none;
     mix-blend-mode: normal;
 }
+
+.react-flow__controls button {
+    @apply dark:text-black dark:hover:text-black/80;
+}

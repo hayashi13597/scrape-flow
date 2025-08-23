@@ -5,7 +5,9 @@ import NodeHeader from "@/features/workflow-editor/components/nodes/NodeHeader";
 import { AppNodeData } from "@/features/workflow-editor/types/appNode";
 import { TaskRegistry } from "@/features/workflow-editor/lib/task/register";
 import { NodeInputs } from "@/features/workflow-editor/components/nodes/NodeInputs";
-import { NodeInput } from "@/features/workflow-editor/components/nodes/NodeInput";
+import NodeInput from "@/features/workflow-editor/components/nodes/NodeInput";
+import NodeOutput from "@/features/workflow-editor/components/nodes/NodeOutput";
+import NodeOutputs from "@/features/workflow-editor/components/nodes/NodeOutputs";
 
 const NodeComponent = memo((props: NodeProps) => {
   const nodeData = props.data as AppNodeData;
@@ -13,12 +15,18 @@ const NodeComponent = memo((props: NodeProps) => {
 
   return (
     <NodeCard nodeId={props.id} isSelected={!!props.selected}>
-      <NodeHeader taskType={nodeData.type} />
+      <NodeHeader taskType={nodeData.type} nodeId={props.id} />
       <NodeInputs>
         {task.inputs.map((input, index) => (
           <NodeInput key={index} input={input} nodeId={props.id} />
         ))}
       </NodeInputs>
+
+      <NodeOutputs>
+        {task.outputs.map((output, index) => (
+          <NodeOutput key={index} output={output} />
+        ))}
+      </NodeOutputs>
     </NodeCard>
   );
 });

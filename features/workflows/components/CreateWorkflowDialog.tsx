@@ -46,7 +46,6 @@ const CreateWorkflowDialog = ({ triggerText }: CreateWorkflowDialogProps) => {
   const { mutate, isPending } = useMutation({
     mutationFn: createWorkflow,
     onSuccess: data => {
-      console.log(data);
       toast.success("Workflow created successfully", {
         id: "workflow-creating"
       });

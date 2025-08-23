@@ -8,17 +8,18 @@ import {
 import StringParam from "@/features/workflow-editor/components/nodes/params/StringParam";
 import { useReactFlow } from "@xyflow/react";
 import { AppNode } from "@/features/workflow-editor/types/appNode";
+import BrowserInstanceParam from "@/features/workflow-editor/components/nodes/params/BrowserInstanceParam";
 
 interface NodeParamFieldProps {
   param: TaskParam;
   nodeId: string;
+  disabled: boolean;
 }
 
-const NodeParamField = ({ param, nodeId }: NodeParamFieldProps) => {
+const NodeParamField = ({ param, nodeId, disabled }: NodeParamFieldProps) => {
   const { updateNodeData, getNode } = useReactFlow();
   const node = getNode(nodeId) as AppNode;
   const value = node?.data.inputs?.[param.name];
-  console.log(value);
 
   const updateNodeParamValue = useCallback(
     (newValue: string) => {
@@ -38,6 +39,16 @@ const NodeParamField = ({ param, nodeId }: NodeParamFieldProps) => {
         <StringParam
           param={param}
           value={value}
+          updateNodeParamProps={updateNodeParamValue}
+          disabled={disabled}
+        />
+      );
+
+    case TaskParamType.BROWSER_INSTANCE:
+      return (
+        <BrowserInstanceParam
+          param={param}
+          value=""
           updateNodeParamProps={updateNodeParamValue}
         />
       );
