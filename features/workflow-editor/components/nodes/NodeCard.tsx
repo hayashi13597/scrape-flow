@@ -3,6 +3,7 @@
 import React, { useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { useReactFlow } from "@xyflow/react";
+import useFlowValidation from "@/features/workflow-editor/hooks/useFlowValidation";
 
 interface NodeCardProps {
   children: React.ReactNode;
@@ -12,6 +13,8 @@ interface NodeCardProps {
 
 const NodeCard = ({ children, nodeId, isSelected }: NodeCardProps) => {
   const { getNode, setCenter } = useReactFlow();
+  const { invalidInputs } = useFlowValidation();
+  const hasInvalidInputs = invalidInputs.some(input => input.nodeId === nodeId);
 
   const centerOnNode = useCallback(() => {
     const node = getNode(nodeId);
@@ -38,7 +41,8 @@ const NodeCard = ({ children, nodeId, isSelected }: NodeCardProps) => {
       className={cn(
         "rounded-md cursor-pointer bg-background border-2" +
           " border-separate w-[420px] text-xs gap-1 flex flex-col",
-        isSelected && "border-primary"
+        isSelected && "border-primary",
+        hasInvalidInputs && "border-destructive border-2"
       )}
       onDoubleClick={centerOnNode}
     >

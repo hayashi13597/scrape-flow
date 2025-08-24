@@ -5,6 +5,7 @@ import { useReactFlow } from "@xyflow/react";
 import { useMutation } from "@tanstack/react-query";
 import { updateWorkflow } from "@/features/workflows/services/updateWorkflow";
 import { toast } from "sonner";
+import { CheckIcon } from "lucide-react";
 
 interface SaveBtnProps {
   workflowId: string;
@@ -41,6 +42,7 @@ const SaveBtn = ({ workflowId }: SaveBtnProps) => {
         });
       }}
     >
+      <CheckIcon size={16} className="text-primary" />
       Save
     </Button>
   );

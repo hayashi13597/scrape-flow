@@ -1,0 +1,46 @@
+"use client";
+
+import React, {
+  Dispatch,
+  SetStateAction,
+  createContext,
+  useState
+} from "react";
+import { AppNodeMissingInputs } from "@/features/workflow-editor/types/appNode";
+
+type FlowValidationContextType = {
+  invalidInputs: AppNodeMissingInputs[];
+  setInvalidInputs: Dispatch<SetStateAction<AppNodeMissingInputs[]>>;
+  clearErrors: () => void;
+};
+
+export const FlowValidationContext =
+  createContext<FlowValidationContextType | null>(null);
+
+const FlowValidationContextProvider = ({
+  children
+}: {
+  children: React.ReactNode;
+}) => {
+  const [invalidInputs, setInvalidInputs] = useState<AppNodeMissingInputs[]>(
+    []
+  );
+
+  const clearErrors = () => {
+    setInvalidInputs([]);
+  };
+
+  return (
+    <FlowValidationContext.Provider
+      value={{
+        invalidInputs,
+        setInvalidInputs,
+        clearErrors
+      }}
+    >
+      {children}
+    </FlowValidationContext.Provider>
+  );
+};
+
+export default FlowValidationContextProvider;

@@ -1,6 +1,9 @@
-import { TaskParamType, TaskType } from "@/features/workflow-editor/types/task";
+import {
+  TaskParamType,
+  TaskType,
+  WorkflowTaskType
+} from "@/features/workflow-editor/types/task";
 import { LucideProps, TextIcon } from "lucide-react";
-import { WorkflowTaskType } from "@/features/workflows/types";
 
 export const ExtractTextFromElementTask = {
   type: TaskType.EXTRACT_TEXT_FROM_ELEMENT,

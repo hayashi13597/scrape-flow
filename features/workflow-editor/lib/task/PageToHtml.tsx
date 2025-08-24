@@ -1,6 +1,9 @@
-import { TaskParamType, TaskType } from "@/features/workflow-editor/types/task";
+import {
+  TaskParamType,
+  TaskType,
+  WorkflowTaskType
+} from "@/features/workflow-editor/types/task";
 import { CodeIcon, LucideProps } from "lucide-react";
-import { WorkflowTaskType } from "@/features/workflows/types";
 
 export const PageToHtmlTask = {
   type: TaskType.PAGE_TO_HTML,

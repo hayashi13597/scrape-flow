@@ -1,6 +1,9 @@
-import { TaskParamType, TaskType } from "@/features/workflow-editor/types/task";
+import {
+  TaskParamType,
+  TaskType,
+  WorkflowTaskType
+} from "@/features/workflow-editor/types/task";
 import { GlobeIcon, LucideProps } from "lucide-react";
-import { WorkflowTaskType } from "@/features/workflows/types";
 
 export const LaunchBrowserTask = {
   type: TaskType.LUNCH_BROWSER,
